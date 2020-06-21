@@ -1,0 +1,12 @@
+<h2>Assigned Tickets</h2>
+{% for ticket in current_tickets %}
+    <li><a href="/ticket/{{ticket.id}}">{{ticket.title}}</a></li>
+{% endfor %}
+<h2>Filed Tickets</h2>
+{% for ticket in filed_tickets %}
+    <li><a href="/ticket/{{ticket.id}}">{{ticket.title}}</a></li>
+{% endfor %}
+<h2>Completed Tickets</h2>
+{% for ticket in completed_tickets %}
+    <li><a href="/ticket/{{ticket.id}}">{{ticket.title}}</a></li>
+{% endfor %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a> |
+  <a href="{% url 'signup' %}">signup</a>
+{% endif %}
+{% comment %} 
+{% for project in projects %}
+<li>
+    {{ project.title }} | {{ project.description }}
+</li>
+{% endfor %} {% endcomment %}
+<a href="add/"><h3>Add New Ticket</h3></a>
+<p></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      New
+      {% for ticket in new_tickets %}
+      <div class="card" style="width: 15rem;">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/ticket/{{ticket.id}}">Title: {{ticket.title}}</a></h5>
+          <p class="card-text">Date Created: {{ticket.date}}</p>
+          <p class="card-text">Description: {{ticket.description}}</p>
+          <p class="card-text">Status: {{ticket.status}}</p>
+          <p class="card-text">Assigned To: {{ticket.assigned_to}}</p>
+          <p class="card-text">Completed By: {{ticket.completed_by}}</p>
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-sm">
+      In Progress
+      {% for ticket in in_progress_tickets %}
+      <div class="card" style="width: 15rem;">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/ticket/{{ticket.id}}">Title: {{ticket.title}}</a></h5>
+          <p class="card-text">Date Created: {{ticket.date}}</p>
+          <p class="card-text">Description: {{ticket.description}}</p>
+          <p class="card-text">Status: {{ticket.status}}</p>
+          <p class="card-text">Assigned To: {{ticket.assigned_to}}</p>
+          <p class="card-text">Completed By: {{ticket.completed_by}}</p>
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-sm">
+      Done
+      {% for ticket in done_tickets %}
+        <div class="card" style="width: 15rem;">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/ticket/{{ticket.id}}">Title: {{ticket.title}}</a></h5>
+          <p class="card-text">Date Created: {{ticket.date}}</p>
+          <p class="card-text">Description: {{ticket.description}}</p>
+          <p class="card-text">Status: {{ticket.status}}</p>
+          <p class="card-text">Assigned To: {{ticket.assigned_to}}</p>
+          <p class="card-text">Completed By: {{ticket.completed_by}}</p>
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-sm">
+      Invalid
+      {% for ticket in invalid_tickets %}
+      <div class="card" style="width: 15rem;">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/ticket/{{ticket.id}}">Title: {{ticket.title}}</a></h5>
+          <p class="card-text">Date Created: {{ticket.date}}</p>
+          <p class="card-text">Description: {{ticket.description}}</p>
+          <p class="card-text">Status: {{ticket.status}}</p>
+          <p class="card-text">Assigned To: {{ticket.assigned_to}}</p>
+          <p class="card-text">Completed By: {{ticket.completed_by}}</p>
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% comment %} {% for ticket in tickets %}
+<ul>
+  <li>Title: <a href="/ticket/{{ticket.id}}">{{ticket.title}}</a></li>
+  <li>Description: {{ticket.description}}</li>
+  <li>Filed By: <a href="/userpage/{{user.id}}">{{request.user}}</a></li>
+  <li>Status: {{ticket.status}}</li>
+  <li>Completed By: {{ticket.completed_by}}</li>
+</ul> {% endcomment %}
+{% comment %} {% endfor %} {% endcomment %}
+{% endblock %}
